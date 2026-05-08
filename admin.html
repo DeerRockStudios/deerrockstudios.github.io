@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin — Deer Rock Studios</title>
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#07080f">
+
+  <link rel="icon" type="image/png" href="./drs-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./progress.css">
+  <style>
+    .admin-main { max-width: 820px; margin: 0 auto; padding: 100px 24px 80px; position: relative; z-index: 2; }
+    .admin-card {
+      border: 1px solid var(--border); border-radius: 14px;
+      background: rgba(7,8,15,0.6); padding: 22px; margin-bottom: 18px;
+    }
+    .admin-card h2 { font-size: 18px; margin-bottom: 14px; letter-spacing: -0.3px; }
+    .admin-form { display: flex; flex-direction: column; gap: 12px; }
+    .admin-form label {
+      font-family: var(--mono); font-size: 11px; color: var(--text-2);
+      letter-spacing: 0.6px; text-transform: uppercase;
+    }
+    .admin-form input, .admin-form select, .admin-form textarea {
+      background: rgba(7,8,15,0.7); border: 1px solid var(--border);
+      border-radius: 9px; color: var(--text);
+      padding: 9px 12px; font-family: inherit; font-size: 14px;
+      width: 100%;
+    }
+    .admin-form textarea { min-height: 140px; resize: vertical; font-family: var(--mono); }
+    .admin-form input:focus, .admin-form select:focus, .admin-form textarea:focus {
+      outline: none; border-color: var(--cyan);
+    }
+    .admin-form button[type="submit"] {
+      background: var(--cyan); border: 0; color: #07080f;
+      padding: 11px 20px; border-radius: 999px;
+      font-weight: 700; font-family: var(--mono);
+      letter-spacing: 0.5px; cursor: pointer;
+      align-self: flex-start;
+    }
+    .admin-form button[type="submit"]:disabled { opacity: 0.4; cursor: not-allowed; }
+    .post-row {
+      display: grid; grid-template-columns: 80px 100px 1fr auto;
+      gap: 12px; align-items: center;
+      padding: 10px 12px; border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .post-row:last-child { border-bottom: 0; }
+    .post-row .row-app { font-family: var(--mono); font-size: 11px; color: var(--amber); }
+    .post-row .row-date { font-family: var(--mono); font-size: 11px; color: var(--text-2); }
+    .post-row .row-title { font-weight: 600; }
+    .post-row button {
+      background: transparent; border: 1px solid rgba(248,113,113,0.3);
+      color: #f87171; padding: 5px 11px; border-radius: 999px;
+      font-family: var(--mono); font-size: 11px; cursor: pointer;
+    }
+    .post-row button:hover { background: rgba(248,113,113,0.08); }
+    .access-denied {
+      text-align: center; padding: 60px 20px;
+      color: #f87171; font-family: var(--mono);
+      border: 1px solid rgba(248,113,113,0.3); border-radius: 14px;
+    }
+    .login-prompt { text-align: center; padding: 60px 20px; }
+    .login-prompt button {
+      background: var(--cyan); border: 0; color: #07080f;
+      padding: 12px 24px; border-radius: 999px;
+      font-family: var(--mono); font-weight: 700; cursor: pointer;
+      margin-top: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" aria-hidden="true">
+    <div class="stars-s"></div><div class="stars-m"></div><div class="stars-l"></div>
+  </div>
+  <div class="scan-line" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="./">
+      <img src="./drs-logo.png" alt="Deer Rock Studios">
+      <span>Deer Rock Studios</span>
+    </a>
+    <nav>
+      <a href="./">Home</a>
+    </nav>
+    <span class="lang-btn" id="user-info" style="cursor:default">—</span>
+  </header>
+
+  <main class="admin-main">
+
+    <div id="state-loading" class="admin-card">
+      <h2>Loading…</h2>
+    </div>
+
+    <div id="state-login" class="login-prompt admin-card" style="display:none">
+      <h2>Admin Panel</h2>
+      <p style="color:var(--text-2);font-size:14px;">Sign in with the Deer Rock Studios admin Google account to continue.</p>
+      <button id="btn-login">Sign in with Google</button>
+    </div>
+
+    <div id="state-denied" class="access-denied" style="display:none">
+      <h2 style="color:#f87171;margin-bottom:8px;">Access denied</h2>
+      <p>This account is not authorized for the admin panel.</p>
+      <p style="margin-top:14px;font-size:12px;">
+        <button id="btn-signout-denied" style="background:transparent;border:1px solid var(--border);color:var(--text-2);padding:8px 18px;border-radius:999px;cursor:pointer;font-family:var(--mono);">Sign out</button>
+      </p>
+    </div>
+
+    <div id="state-admin" style="display:none">
+
+      <div class="admin-card">
+        <h2>Create new post</h2>
+        <form class="admin-form" id="form-create">
+          <div>
+            <label>App</label>
+            <select name="appSlug" required>
+              <option value="">— select —</option>
+              <option value="eclipse">Eclipse</option>
+              <option value="vivero">Vivero</option>
+            </select>
+          </div>
+          <div>
+            <label>Title</label>
+            <input type="text" name="title" maxlength="120" required>
+          </div>
+          <div>
+            <label>Version (optional, e.g. 0.3.1)</label>
+            <input type="text" name="version" maxlength="20" placeholder="0.3.1">
+          </div>
+          <div>
+            <label>Image URL (optional)</label>
+            <input type="url" name="image" placeholder="https://eclipse-drs.web.app/assets/...">
+          </div>
+          <div>
+            <label>Body (Markdown not rendered — plain text + URLs are auto-linked)</label>
+            <textarea name="body" maxlength="8000" required placeholder="What changed? What's coming next?"></textarea>
+          </div>
+          <button type="submit">Publish post</button>
+        </form>
+      </div>
+
+      <div class="admin-card">
+        <h2>Existing posts</h2>
+        <div id="posts-table">
+          <div style="color:var(--text-2);font-family:var(--mono);font-size:12px;padding:14px 0;">Loading…</div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <script type="module">
+    import {
+      auth, db, COLLECTIONS, ADMIN_EMAIL,
+      getCurrentUser, isAdmin,
+      signInWithGoogle, signOutUser, waitForAuth,
+    } from "./shared/drs-firebase.js";
+    import {
+      collection, query, orderBy, onSnapshot,
+      addDoc, deleteDoc, doc, serverTimestamp,
+    } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
+
+    const stateLoading = document.getElementById("state-loading");
+    const stateLogin   = document.getElementById("state-login");
+    const stateDenied  = document.getElementById("state-denied");
+    const stateAdmin   = document.getElementById("state-admin");
+    const userInfo     = document.getElementById("user-info");
+
+    function showState(name) {
+      stateLoading.style.display = name === "loading" ? "" : "none";
+      stateLogin.style.display   = name === "login"   ? "" : "none";
+      stateDenied.style.display  = name === "denied"  ? "" : "none";
+      stateAdmin.style.display   = name === "admin"   ? "" : "none";
+    }
+
+    function applyAuth(user) {
+      if (!user) {
+        userInfo.textContent = "—";
+        showState("login");
+        return;
+      }
+      userInfo.textContent = user.email || "guest";
+      if (isAdmin(user)) {
+        showState("admin");
+        subscribePosts();
+      } else {
+        showState("denied");
+      }
+    }
+
+    document.addEventListener("drs-auth-changed", (e) => applyAuth(e.detail));
+    document.getElementById("btn-login").addEventListener("click", async () => {
+      try { await signInWithGoogle(); } catch (e) { alert(e.message); }
+    });
+    document.getElementById("btn-signout-denied").addEventListener("click", signOutUser);
+
+    waitForAuth().then(applyAuth);
+
+    // ── Create post ─────────────────────────────
+    document.getElementById("form-create").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const data = Object.fromEntries(new FormData(form).entries());
+      const user = getCurrentUser();
+      if (!isAdmin(user)) return;
+      const btn = form.querySelector("button[type=submit]");
+      btn.disabled = true;
+      try {
+        await addDoc(collection(db, COLLECTIONS.POSTS), {
+          appSlug: data.appSlug,
+          title: data.title.trim(),
+          version: data.version.trim() || null,
+          image: data.image.trim() || null,
+          body: data.body,
+          authorUid: user.uid,
+          authorEmail: user.email,
+          createdAt: serverTimestamp(),
+        });
+        form.reset();
+        alert("Post published.");
+      } catch (err) {
+        console.error(err);
+        alert("Failed: " + err.message);
+      } finally {
+        btn.disabled = false;
+      }
+    });
+
+    // ── Posts table ─────────────────────────────
+    let unsub = null;
+    function subscribePosts() {
+      if (unsub) return;
+      const q = query(collection(db, COLLECTIONS.POSTS), orderBy("createdAt", "desc"));
+      const tableEl = document.getElementById("posts-table");
+      unsub = onSnapshot(q, (snap) => {
+        if (snap.empty) {
+          tableEl.innerHTML = `<div style="color:var(--text-2);font-family:var(--mono);font-size:12px;padding:14px 0;">No posts yet.</div>`;
+          return;
+        }
+        tableEl.innerHTML = snap.docs.map((d) => {
+          const p = d.data();
+          const date = p.createdAt?.toDate
+            ? p.createdAt.toDate().toLocaleDateString()
+            : "—";
+          return `
+            <div class="post-row" data-post-id="${d.id}">
+              <span class="row-app">${p.appSlug}</span>
+              <span class="row-date">${date}</span>
+              <span class="row-title">${(p.title || "").replace(/[<&]/g, c => c === "<" ? "&lt;" : "&amp;")}</span>
+              <button data-id="${d.id}" class="btn-delete">Delete</button>
+            </div>`;
+        }).join("");
+        tableEl.querySelectorAll(".btn-delete").forEach((btn) => {
+          btn.addEventListener("click", async () => {
+            if (!confirm("Delete this post? Comments and reactions remain (orphaned) but will be hidden.")) return;
+            try {
+              await deleteDoc(doc(db, COLLECTIONS.POSTS, btn.dataset.id));
+            } catch (err) {
+              alert("Failed: " + err.message);
+            }
+          });
+        });
+      }, (err) => {
+        console.error(err);
+        tableEl.innerHTML = `<div style="color:#f87171;padding:14px 0;">Error: ${err.message}</div>`;
+      });
+    }
+  </script>
+</body>
+</html>

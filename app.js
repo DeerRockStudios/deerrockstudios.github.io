@@ -15,8 +15,9 @@ const i18n = {
     intel_agents:       "Agents deployed",
     intel_products_label: "Live products",
     intel_sub:          "Pipeline running. Target: 50 products.",
-    latest_eyebrow:     "LATEST DEPLOYMENT",
-    latest_desc:        "2D top-down RPG sandbox — Web",
+    latest_eyebrow:     "LATEST IN DEVELOPMENT",
+    latest_desc:        "2D top-down RPG sandbox — In progress",
+    latest_cta:         "View progress",
     products_title:     "Deployed Products",
     products_pill:      "Live",
     milestones_title:   "Milestones",
@@ -68,8 +69,9 @@ const i18n = {
     intel_agents:       "Agentes desplegados",
     intel_products_label: "Productos activos",
     intel_sub:          "Pipeline en ejecución. Meta: 50 productos.",
-    latest_eyebrow:     "ÚLTIMO DESPLIEGUE",
-    latest_desc:        "RPG sandbox 2D — Web",
+    latest_eyebrow:     "EN DESARROLLO",
+    latest_desc:        "RPG sandbox 2D — En progreso",
+    latest_cta:         "Ver progreso",
     products_title:     "Productos Desplegados",
     products_pill:      "Activo",
     milestones_title:   "Logros",
@@ -138,7 +140,7 @@ function renderProducts() {
     const badgeClass = p.badge === "Live" ? "live" : p.badge === "In Dev" ? "indev" : "";
     const iconHtml = p.icon
       ? `<img src="${p.icon}" alt="${p.name}" class="product-icon" loading="lazy">`
-      : `<div class="product-icon-placeholder">🚀</div>`;
+      : `<div class="product-icon-placeholder" style="${p.color ? `color:${p.color}` : ''}">${p.emoji || "🚀"}</div>`;
     const platformsHtml = (p.platforms || [])
       .map(pl => `<span class="platform-dot">${getPlatformLabel(pl)}</span>`)
       .join("");
@@ -162,7 +164,7 @@ function renderProducts() {
     if (!isLive) {
       // In-dev or coming-soon: never link to a non-existent game.
       if (p.name && p.name !== "Coming Soon") {
-        actionsHtml += `<a href="./progress/${slug}.html" class="product-link product-progress">${t.product_progress}</a>`;
+        actionsHtml += `<a href="./progress.html?app=${slug}" class="product-link product-progress">${t.product_progress}</a>`;
       } else {
         actionsHtml += `<span class="product-soon">${t.product_soon}</span>`;
       }

@@ -12,15 +12,28 @@
     "playStore": "https://play.google.com/store/apps/details?id=com.deerrock.orbit"
   },
   {
+    "name": "Vivero",
+    "type": "App",
+    "badge": "In Dev",
+    "icon": "",
+    "emoji": "🌱",
+    "color": "#22c55e",
+    "platforms": ["web"],
+    "description_en": "Gardening simulator with a player-driven seed marketplace. Grow, trade, thrive.",
+    "description_es": "Simulador de jardinería con mercado de semillas entre jugadores. Cultiva, comercia, prospera.",
+    "url": "",
+    "playStore": ""
+  },
+  {
     "name": "Eclipse",
     "type": "Game",
-    "badge": "Live",
+    "badge": "In Dev",
     "icon": "https://eclipse-drs.web.app/assets/branding/logo.png",
     "color": "#ffaa44",
     "platforms": ["web"],
     "description_en": "2D top-down RPG sandbox where light and darkness are mechanics. The light bearer awakens.",
     "description_es": "RPG sandbox 2D donde la luz y la oscuridad son mecánicas. El portador de luz despierta.",
-    "url": "https://eclipse-drs.web.app",
+    "url": "",
     "playStore": ""
   },
   {

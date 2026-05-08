@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Devlog — Deer Rock Studios</title>
+  <meta name="description" content="Development progress, posts, and community discussion for Deer Rock Studios products in development.">
+  <meta name="theme-color" content="#07080f">
+
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" type="image/png" href="./drs-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./progress.css">
+</head>
+<body>
+
+  <div class="stars" aria-hidden="true">
+    <div class="stars-s"></div>
+    <div class="stars-m"></div>
+    <div class="stars-l"></div>
+  </div>
+  <div class="scan-line" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="./">
+      <img src="./drs-logo.png" alt="Deer Rock Studios">
+      <span>Deer Rock Studios</span>
+    </a>
+    <nav>
+      <a href="./#products" data-i18n="nav_products">Products</a>
+      <a href="./#milestones" data-i18n="nav_milestones">Milestones</a>
+      <a href="./#about" data-i18n="nav_about">Studio</a>
+      <a href="./#support" data-i18n="nav_support">Contact</a>
+    </nav>
+    <button id="lang-btn" class="lang-btn">ES</button>
+  </header>
+
+  <main class="devlog-main">
+
+    <!-- Devlog header (filled by progress.js) -->
+    <section class="devlog-hero">
+      <div class="devlog-hero-icon" id="devlog-icon"></div>
+      <div class="devlog-hero-text">
+        <span class="devlog-eyebrow mono" id="devlog-status">IN DEVELOPMENT</span>
+        <h1 id="devlog-title">—</h1>
+        <p id="devlog-tagline" class="devlog-tagline">—</p>
+      </div>
+    </section>
+
+    <!-- Auth bar -->
+    <div class="auth-bar" id="auth-bar">
+      <div id="auth-status" class="auth-status mono">…</div>
+      <div class="auth-actions">
+        <button id="auth-google" class="btn-auth">Sign in with Google</button>
+        <button id="auth-guest" class="btn-auth-ghost">Continue as guest</button>
+        <button id="auth-signout" class="btn-auth-ghost" style="display:none">Sign out</button>
+      </div>
+    </div>
+
+    <!-- Posts feed -->
+    <section class="devlog-feed" id="devlog-feed">
+      <div class="devlog-empty mono" id="devlog-empty">Loading posts…</div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <a class="brand" href="./">
+        <img src="./drs-logo.png" alt="Deer Rock Studios">
+        <span>Deer Rock Studios</span>
+      </a>
+      <div class="footer-links">
+        <a href="./privacy-policy.html" data-i18n="footer_privacy">Privacy Policy</a>
+        <a href="./delete-account.html" data-i18n="footer_delete">Delete Account</a>
+      </div>
+      <p class="footer-tag mono" data-i18n="footer_tag">Built by intelligence. Shaped by vision.</p>
+    </div>
+  </footer>
+
+  <script src="./app.js"></script>
+  <script type="module" src="./progress.js"></script>
+</body>
+</html>
