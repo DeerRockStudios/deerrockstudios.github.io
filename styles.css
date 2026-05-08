@@ -362,12 +362,33 @@ h1 {
   font-weight: 600; font-family: var(--mono);
   letter-spacing: 0.5px; text-transform: uppercase;
 }
+.product-actions {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  justify-content: flex-end;
+}
 .product-link {
   color: var(--cyan); text-decoration: none;
   font-weight: 600; font-size: 11px; font-family: var(--mono);
   letter-spacing: 0.5px; transition: opacity 0.2s;
 }
 .product-link:hover { opacity: 0.65; }
+.product-link.product-progress { color: var(--amber); }
+.product-playstore {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 10px; border: 1px solid rgba(74,222,128,0.35);
+  border-radius: 999px; color: var(--green);
+  text-decoration: none; font-family: var(--mono);
+  font-size: 10px; font-weight: 700; letter-spacing: 0.5px;
+  transition: background 0.2s, border-color 0.2s;
+}
+.product-playstore:hover {
+  background: rgba(74,222,128,0.08); border-color: rgba(74,222,128,0.6);
+}
+.product-soon {
+  color: var(--text-2); font-family: var(--mono);
+  font-size: 10px; letter-spacing: 0.8px; text-transform: uppercase;
+  opacity: 0.6;
+}
 
 /* ── Milestones ── */
 .milestones-grid {

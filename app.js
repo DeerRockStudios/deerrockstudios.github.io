@@ -48,7 +48,9 @@ const i18n = {
     footer_privacy:     "Privacy Policy",
     footer_delete:      "Delete Account",
     footer_tag:         "Built by intelligence. Shaped by vision.",
-    product_visit:      "Visit →"
+    product_visit:      "Play →",
+    product_progress:   "View progress →",
+    product_soon:       "Coming soon"
   },
   es: {
     nav_products:       "Productos",
@@ -99,7 +101,9 @@ const i18n = {
     footer_privacy:     "Política de Privacidad",
     footer_delete:      "Eliminar Cuenta",
     footer_tag:         "Construido por inteligencia. Moldeado por visión.",
-    product_visit:      "Visitar →"
+    product_visit:      "Jugar →",
+    product_progress:   "Ver progreso →",
+    product_soon:       "Próximamente"
   }
 };
 
@@ -138,7 +142,31 @@ function renderProducts() {
     const platformsHtml = (p.platforms || [])
       .map(pl => `<span class="platform-dot">${getPlatformLabel(pl)}</span>`)
       .join("");
-    const linkUrl = p.url && p.url !== "#" ? p.url : null;
+
+    // Action buttons depending on status
+    let actionsHtml = "";
+    const isLive = p.badge === "Live";
+    const hasPlayUrl = p.url && p.url !== "#";
+    const hasPlayStore = !!p.playStore;
+    const slug = (p.name || "").toLowerCase().replace(/\s+/g, "-");
+
+    if (isLive && hasPlayUrl) {
+      actionsHtml += `<a href="${p.url}" target="_blank" rel="noopener" class="product-link">${t.product_visit}</a>`;
+    }
+    if (isLive && hasPlayStore) {
+      actionsHtml += `<a href="${p.playStore}" target="_blank" rel="noopener" class="product-playstore" aria-label="Google Play Store">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zM14.793 13l2.665 2.665-9.815 5.665L14.793 13zm0-2L7.642 2.67l9.815 5.665L14.793 11zm6.28 1.928l-3.155 1.823-3.057-3.057 3.057-3.057 3.155 1.823a1 1 0 010 1.732l.001.001z"/></svg>
+        Play Store
+      </a>`;
+    }
+    if (!isLive) {
+      // In-dev or coming-soon: never link to a non-existent game.
+      if (p.name && p.name !== "Coming Soon") {
+        actionsHtml += `<a href="./progress/${slug}.html" class="product-link product-progress">${t.product_progress}</a>`;
+      } else {
+        actionsHtml += `<span class="product-soon">${t.product_soon}</span>`;
+      }
+    }
 
     card.innerHTML = `
       <div class="product-head">
@@ -151,7 +179,7 @@ function renderProducts() {
       <p class="product-desc">${desc}</p>
       <div class="product-footer">
         <div class="product-platforms">${platformsHtml}</div>
-        ${linkUrl ? `<a href="${linkUrl}" target="_blank" rel="noopener" class="product-link">${t.product_visit}</a>` : ''}
+        <div class="product-actions">${actionsHtml}</div>
       </div>
     `;
     grid.appendChild(card);
