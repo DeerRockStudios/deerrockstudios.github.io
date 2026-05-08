@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deer Rock Studios — AI-Native Product Studio</title>
+  <meta name="description" content="Deer Rock Studios. AI-native product studio. 60+ agents. Human creative direction. Always shipping.">
+  <meta property="og:title" content="Deer Rock Studios">
+  <meta property="og:description" content="AI-native product studio. 60+ specialized agents. Human-directed. Always shipping.">
+  <meta property="og:image" content="https://deerrockstudios.github.io/drs-logo.png">
+  <meta property="og:type" content="website">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" type="image/png" href="./drs-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+  <div class="stars" aria-hidden="true">
+    <div class="stars-s"></div>
+    <div class="stars-m"></div>
+    <div class="stars-l"></div>
+  </div>
+  <div class="scan-line" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#home">
+      <img src="./drs-logo.png" alt="Deer Rock Studios">
+      <span>Deer Rock Studios</span>
+    </a>
+    <nav>
+      <a href="#products" data-i18n="nav_products">Products</a>
+      <a href="#milestones" data-i18n="nav_milestones">Milestones</a>
+      <a href="#about" data-i18n="nav_about">Studio</a>
+      <a href="#support" data-i18n="nav_support">Contact</a>
+    </nav>
+    <button id="lang-btn" class="lang-btn">ES</button>
+  </header>
+
+  <main id="home">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-text">
+        <p class="eyebrow">
+          <span class="eyebrow-prefix">›</span>
+          <span data-i18n="hero_eyebrow">Human-directed · AI-powered · Always shipping</span>
+          <span class="cursor">_</span>
+        </p>
+        <h1>
+          <span data-i18n="hero_line1">We don't build apps.</span><br>
+          <span data-i18n="hero_line2">We deploy</span><br>
+          <span class="gradient-word" data-i18n="hero_line3">experiences.</span>
+        </h1>
+        <p class="lead" data-i18n="hero_text">Deer Rock Studios operates at the intersection of human vision and machine intelligence — deploying 60+ specialized AI agents to design, build, and ship products faster than any traditional team could imagine.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#products" data-i18n="hero_cta_1">See Our Work</a>
+          <a class="btn btn-secondary" href="#about" data-i18n="hero_cta_2">The Studio</a>
+        </div>
+        <div class="social-row">
+          <a href="https://www.instagram.com/deerrockstudios/" target="_blank" rel="noopener" aria-label="Instagram" class="social-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61588954963207" target="_blank" rel="noopener" aria-label="Facebook" class="social-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@digital_king02" target="_blank" rel="noopener" aria-label="TikTok" class="social-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@Deerrockstudios" target="_blank" rel="noopener" aria-label="YouTube" class="social-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <!-- Intelligence card -->
+        <div class="intel-card">
+          <div class="intel-header">
+            <span class="intel-status-dot"></span>
+            <span class="intel-label mono" data-i18n="intel_label">SYSTEM ACTIVE</span>
+          </div>
+          <div class="intel-stat">
+            <span class="intel-num mono">60<sup>+</sup></span>
+            <span class="intel-unit" data-i18n="intel_agents">Agents deployed</span>
+          </div>
+          <div class="intel-divider"></div>
+          <div class="intel-row">
+            <span class="intel-key" data-i18n="intel_products_label">Live products</span>
+            <span class="intel-val mono" id="shipped-count">—</span>
+          </div>
+          <div class="intel-progress">
+            <div class="intel-bar" id="mission-bar"></div>
+          </div>
+          <p class="intel-sub mono" data-i18n="intel_sub">Pipeline running. Target: 50 products.</p>
+        </div>
+
+        <!-- Latest card -->
+        <div class="latest-card">
+          <span class="latest-eyebrow mono" data-i18n="latest_eyebrow">LATEST DEPLOYMENT</span>
+          <div class="latest-row">
+            <img src="https://eclipse-drs.web.app/assets/branding/logo.png" alt="Eclipse" class="latest-icon">
+            <div>
+              <p class="latest-name">Eclipse</p>
+              <p class="latest-desc" data-i18n="latest_desc">2D top-down RPG sandbox — Web</p>
+            </div>
+          </div>
+          <div class="badge-row">
+            <a href="https://eclipse-drs.web.app" target="_blank" rel="noopener" class="platform-badge web-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+              Web
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section id="products" class="section">
+      <div class="section-head">
+        <h2 data-i18n="products_title">Deployed Products</h2>
+        <span class="pill mono" data-i18n="products_pill">Live</span>
+      </div>
+      <div id="products-grid" class="products-grid"></div>
+    </section>
+
+    <!-- MILESTONES -->
+    <section id="milestones" class="section">
+      <div class="section-head">
+        <h2 data-i18n="milestones_title">Milestones</h2>
+        <span class="pill mono" data-i18n="milestones_pill">Since launch</span>
+      </div>
+      <div class="milestones-grid">
+        <div class="milestone-card">
+          <span class="ms-num mono">01</span>
+          <p class="milestone-stat" data-i18n="ms1_stat">0 → Play Store</p>
+          <p class="milestone-desc" data-i18n="ms1_desc">Concept to Google Play approved in under 30 days.</p>
+        </div>
+        <div class="milestone-card">
+          <span class="ms-num mono">02</span>
+          <p class="milestone-stat" data-i18n="ms2_stat">85+ users</p>
+          <p class="milestone-desc" data-i18n="ms2_desc">Organic users on launch week. Zero ad spend.</p>
+        </div>
+        <div class="milestone-card">
+          <span class="ms-num mono">03</span>
+          <p class="milestone-stat" data-i18n="ms3_stat">3 platforms</p>
+          <p class="milestone-desc" data-i18n="ms3_desc">Web, Android, and itch.io from a single codebase.</p>
+        </div>
+        <div class="milestone-card">
+          <span class="ms-num mono">04</span>
+          <p class="milestone-stat" data-i18n="ms4_stat">60+ AI agents</p>
+          <p class="milestone-desc" data-i18n="ms4_desc">Fully parallelized AI pipeline running in production.</p>
+        </div>
+        <div class="milestone-card">
+          <span class="ms-num mono">05</span>
+          <p class="milestone-stat" data-i18n="ms5_stat">Day-1 revenue</p>
+          <p class="milestone-desc" data-i18n="ms5_desc">Monetization live on launch day via Stripe and AdMob.</p>
+        </div>
+        <div class="milestone-card">
+          <span class="ms-num mono">06</span>
+          <p class="milestone-stat" data-i18n="ms6_stat">Sub-48h approval</p>
+          <p class="milestone-desc" data-i18n="ms6_desc">Play Store review completed in under 48 hours.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section about-section">
+      <div class="about-main">
+        <h2 data-i18n="about_title">The Studio</h2>
+        <p class="about-lead" data-i18n="about_lead">"The bottleneck in software was never ideas — it was execution speed. We removed it."</p>
+        <p data-i18n="about_text">Deer Rock Studios is an AI-native product studio. We run a coordinated intelligence network of 60+ specialized agents — covering design, engineering, QA, deployment and growth — all directed by human creative vision.</p>
+        <p data-i18n="about_text2">Our stack is battle-tested: Firebase, Stripe, AdMob, Capacitor. Our velocity is unprecedented. Every new product ships faster than the last.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-item">
+          <span class="stat-num cyan mono" id="stat-products">1</span>
+          <span class="stat-label mono" data-i18n="stat_products">Products live</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num amber mono">60+</span>
+          <span class="stat-label mono" data-i18n="stat_agents">AI agents</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num cyan mono">50</span>
+          <span class="stat-label mono" data-i18n="stat_goal">Product target</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num amber mono">∞</span>
+          <span class="stat-label mono" data-i18n="stat_ambition">Ambition</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="support" class="section contact-grid">
+      <div>
+        <h2 data-i18n="support_title">Contact</h2>
+        <p data-i18n="support_text">Support, press, partnerships, investment — we read every message.</p>
+        <a class="link mono" href="mailto:jucapegu02@gmail.com">jucapegu02@gmail.com</a>
+      </div>
+      <div>
+        <h2 data-i18n="press_title">Press & Partners</h2>
+        <p data-i18n="press_text">Covering AI-native studios? We're available. Mention "Press" in your subject line.</p>
+        <a class="link mono" href="mailto:jucapegu02@gmail.com?subject=Press%20Inquiry">jucapegu02@gmail.com</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-left">
+      <a class="brand" href="#home">
+        <img src="./drs-logo.png" alt="Deer Rock Studios">
+        <span>Deer Rock Studios</span>
+      </a>
+      <span class="footer-copy">© <span id="year"></span> Deer Rock Studios. &nbsp;<span class="mono footer-tag" data-i18n="footer_tag">Built by intelligence. Shaped by vision.</span></span>
+    </div>
+    <div class="footer-links">
+      <a href="./privacy-policy.html" data-i18n="footer_privacy">Privacy Policy</a>
+      <a href="./delete-account.html" data-i18n="footer_delete">Delete Account</a>
+      <div class="social-row">
+        <a href="https://www.instagram.com/deerrockstudios/" target="_blank" rel="noopener" aria-label="Instagram" class="social-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61588954963207" target="_blank" rel="noopener" aria-label="Facebook" class="social-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@digital_king02" target="_blank" rel="noopener" aria-label="TikTok" class="social-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@Deerrockstudios" target="_blank" rel="noopener" aria-label="YouTube" class="social-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>

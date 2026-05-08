@@ -1,0 +1,38 @@
+[
+  {
+    "name": "ORBIT",
+    "type": "Game",
+    "badge": "Live",
+    "icon": "https://deerrockstudios.github.io/orbit-game/icon-512.png",
+    "color": "#22d3ee",
+    "platforms": ["web", "android"],
+    "description_en": "1-tap space game. Orbit planets, beat the leaderboard, survive.",
+    "description_es": "Juego espacial de un toque. Orbita planetas, supera el ranking, sobrevive.",
+    "url": "https://deerrockstudios.github.io/orbit-game/",
+    "playStore": "https://play.google.com/store/apps/details?id=com.deerrock.orbit"
+  },
+  {
+    "name": "Eclipse",
+    "type": "Game",
+    "badge": "Live",
+    "icon": "https://eclipse-drs.web.app/assets/branding/logo.png",
+    "color": "#ffaa44",
+    "platforms": ["web"],
+    "description_en": "2D top-down RPG sandbox where light and darkness are mechanics. The light bearer awakens.",
+    "description_es": "RPG sandbox 2D donde la luz y la oscuridad son mecánicas. El portador de luz despierta.",
+    "url": "https://eclipse-drs.web.app",
+    "playStore": ""
+  },
+  {
+    "name": "Coming Soon",
+    "type": "App",
+    "badge": "In Dev",
+    "icon": "",
+    "color": "#fbbf24",
+    "platforms": [],
+    "description_en": "The next Deer Rock Studios product is in development. Stay tuned.",
+    "description_es": "El próximo producto de Deer Rock Studios está en desarrollo. Pronto.",
+    "url": "#",
+    "playStore": ""
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "name": "Deer Rock Studios",
+  "short_name": "DRS",
+  "display": "browser",
+  "start_url": "./",
+  "scope": "./"
+}
