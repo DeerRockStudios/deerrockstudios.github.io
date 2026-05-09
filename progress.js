@@ -9,7 +9,6 @@ import {
   getCurrentUser,
   isAdmin,
   signInWithGoogle,
-  signInGuest,
   signOutUser,
   waitForAuth,
 } from "./shared/drs-firebase.js";
@@ -67,47 +66,54 @@ document.getElementById("devlog-tagline").textContent =
   appConfig[`tagline_${lang}`] || appConfig.tagline_en;
 
 // ── Auth UI ─────────────────────────────────────
+const authBar     = document.getElementById("auth-bar");
+const authGate    = document.getElementById("auth-gate");
 const authStatus  = document.getElementById("auth-status");
 const btnGoogle   = document.getElementById("auth-google");
-const btnGuest    = document.getElementById("auth-guest");
+const btnGoogleGate = document.getElementById("auth-gate-google");
 const btnSignout  = document.getElementById("auth-signout");
+const feedSection = document.getElementById("devlog-feed");
+
+// Devlog is share-only and gated to Google auth (no anonymous allowed).
+// Anonymous or signed-out users see the gate; everything else is hidden.
+function isAuthorizedViewer(user) {
+  return !!(user && !user.isAnonymous && user.email);
+}
 
 function renderAuthState(user) {
-  if (!user) {
-    authStatus.textContent = "Not signed in";
-    authStatus.className = "auth-status mono";
-    btnGoogle.style.display  = "";
-    btnGuest.style.display   = "";
-    btnSignout.style.display = "none";
-  } else if (user.isAnonymous) {
-    authStatus.textContent = "Signed in as guest";
-    authStatus.className = "auth-status mono signed-in";
-    btnGoogle.style.display  = "";
-    btnGuest.style.display   = "none";
-    btnSignout.style.display = "";
-  } else if (isAdmin(user)) {
+  const allowed = isAuthorizedViewer(user);
+
+  if (!allowed) {
+    authGate.style.display = "";
+    authBar.style.display = "none";
+    feedSection.style.display = "none";
+    return;
+  }
+
+  authGate.style.display = "none";
+  authBar.style.display = "";
+  feedSection.style.display = "";
+
+  if (isAdmin(user)) {
     authStatus.textContent = `Admin: ${user.email}`;
     authStatus.className = "auth-status mono admin";
-    btnGoogle.style.display  = "none";
-    btnGuest.style.display   = "none";
-    btnSignout.style.display = "";
     showAdminBanner();
   } else {
     authStatus.textContent = `Signed in as ${user.displayName || user.email}`;
     authStatus.className = "auth-status mono signed-in";
-    btnGoogle.style.display  = "none";
-    btnGuest.style.display   = "none";
-    btnSignout.style.display = "";
   }
-  // Re-render posts so comment forms enable/disable correctly.
+  btnGoogle.style.display  = "none";
+  btnSignout.style.display = "";
+
+  subscribePosts();
   renderPosts();
 }
 
 btnGoogle.addEventListener("click", async () => {
   try { await signInWithGoogle(); } catch (e) { alert(e.message); }
 });
-btnGuest.addEventListener("click", async () => {
-  try { await signInGuest(); } catch (e) { alert(e.message); }
+btnGoogleGate.addEventListener("click", async () => {
+  try { await signInWithGoogle(); } catch (e) { alert(e.message); }
 });
 btnSignout.addEventListener("click", async () => {
   await signOutUser();
@@ -136,25 +142,27 @@ const emptyEl = document.getElementById("devlog-empty");
 let posts = [];
 let reactionsByPost = new Map();   // postId → { type → { count, mine } }
 let commentsByPost  = new Map();   // postId → array
+let postsUnsub = null;
 
-const postsQuery = query(
-  collection(db, COLLECTIONS.POSTS),
-  where("appSlug", "==", appSlug),
-  orderBy("createdAt", "desc"),
-);
-
-onSnapshot(postsQuery, (snap) => {
-  posts = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
-  renderPosts();
-  // Subscribe to reactions and comments for each post on first load.
-  snap.docs.forEach((d) => subscribePostExtras(d.id));
-}, (err) => {
-  console.error("[DRS] posts snapshot error:", err);
-  feedEl.innerHTML = `<div class="devlog-error">
-    Failed to load posts: ${err.message}<br>
-    <small>Verify Firestore rules and authorized domains.</small>
-  </div>`;
-});
+function subscribePosts() {
+  if (postsUnsub) return; // already subscribed
+  const postsQuery = query(
+    collection(db, COLLECTIONS.POSTS),
+    where("appSlug", "==", appSlug),
+    orderBy("createdAt", "desc"),
+  );
+  postsUnsub = onSnapshot(postsQuery, (snap) => {
+    posts = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    renderPosts();
+    snap.docs.forEach((d) => subscribePostExtras(d.id));
+  }, (err) => {
+    console.error("[DRS] posts snapshot error:", err);
+    feedEl.innerHTML = `<div class="devlog-error">
+      Failed to load posts: ${err.message}<br>
+      <small>Verify Firestore rules and authorized domains.</small>
+    </div>`;
+  });
+}
 
 const _subscribed = new Set();
 function subscribePostExtras(postId) {

@@ -230,6 +230,33 @@
 }
 .comment-delete:hover { opacity: 1; color: #f87171; }
 
+/* ── Auth gate (shown when not signed in) ── */
+.auth-gate {
+  text-align: center;
+  padding: 60px 24px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgba(7,8,15,0.65);
+  margin-bottom: 22px;
+}
+.auth-gate-title {
+  font-size: 22px; font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -0.3px;
+}
+.auth-gate-text {
+  color: var(--text-2); font-size: 14px;
+  line-height: 1.6;
+  max-width: 420px;
+  margin: 0 auto 22px;
+}
+.auth-gate-back {
+  margin-top: 22px;
+  font-family: var(--mono); font-size: 12px;
+}
+.auth-gate-back a { color: var(--text-2); text-decoration: none; }
+.auth-gate-back a:hover { color: var(--cyan); }
+
 .devlog-empty {
   text-align: center;
   padding: 60px 20px;

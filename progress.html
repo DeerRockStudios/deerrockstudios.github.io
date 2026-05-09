@@ -55,9 +55,21 @@
       <div id="auth-status" class="auth-status mono">…</div>
       <div class="auth-actions">
         <button id="auth-google" class="btn-auth">Sign in with Google</button>
-        <button id="auth-guest" class="btn-auth-ghost">Continue as guest</button>
         <button id="auth-signout" class="btn-auth-ghost" style="display:none">Sign out</button>
       </div>
+    </div>
+
+    <!-- Gate: shown until user is signed in with Google -->
+    <div class="auth-gate" id="auth-gate" style="display:none">
+      <h2 class="auth-gate-title">Private devlog</h2>
+      <p class="auth-gate-text">
+        This page is only available to invited members. Sign in with the Google
+        account that received the invite to view development posts and comment.
+      </p>
+      <button id="auth-gate-google" class="btn-auth">Sign in with Google</button>
+      <p class="auth-gate-back">
+        <a href="./">← Back to Deer Rock Studios</a>
+      </p>
     </div>
 
     <!-- Posts feed -->

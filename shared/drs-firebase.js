@@ -32,7 +32,14 @@ export const COLLECTIONS = {
   REACTIONS: "drs_post_reactions",
 };
 
-export const ADMIN_EMAIL = "jucapegu02@gmail.com";
+// Admins can create posts and delete any comment.
+// To add a new admin: add their Google email here AND in Firestore rules.
+export const ADMIN_EMAILS = [
+  "jucapegu02@gmail.com",
+];
+
+// Back-compat (still used in some files; resolves to first admin).
+export const ADMIN_EMAIL = ADMIN_EMAILS[0];
 
 export const app = initializeApp(firebaseConfig, "drs-website");
 export const auth = getAuth(app);
@@ -56,7 +63,7 @@ export function getCurrentUser() {
 }
 
 export function isAdmin(user = currentUser) {
-  return !!(user && user.email === ADMIN_EMAIL);
+  return !!(user && user.email && ADMIN_EMAILS.includes(user.email));
 }
 
 export function waitForAuth() {
